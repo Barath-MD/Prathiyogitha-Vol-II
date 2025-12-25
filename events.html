@@ -204,6 +204,53 @@
             color: #ff0000 !important;
             text-shadow: 0 0 10px #ff0000, 0 0 20px #8b0000;
         }
+
+        /* Top Pop-up Messenger Styling */
+.msg-popup {
+    position: fixed;
+    top: 20px; /* Distance from top */
+    left: 50%;
+    transform: translateX(-50%); /* Centers the box horizontally */
+    width: 90%;
+    max-width: 450px;
+    background: rgba(0, 0, 0, 0.95);
+    border: 2px solid #ff0000;
+    border-radius: 12px;
+    padding: 15px;
+    color: white;
+    z-index: 3000;
+    box-shadow: 0 5px 25px rgba(255, 0, 0, 0.6);
+    display: none; 
+    animation: slideDown 0.5s ease-out;
+}
+
+@keyframes slideDown {
+    from { transform: translate(-50%, -100px); opacity: 0; }
+    to { transform: translate(-50%, 0); opacity: 1; }
+}
+
+.msg-header {
+    font-weight: bold;
+    color: #ff0000;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #444;
+    margin-bottom: 8px;
+    padding-bottom: 5px;
+}
+
+.msg-close {
+    cursor: pointer;
+    color: #fff;
+    font-size: 24px;
+    line-height: 0.8;
+}
+
+.msg-body {
+    font-size: 15px;
+    line-height: 1.5;
+    text-align: center;
+}
     </style>
 </head>
 
@@ -214,10 +261,6 @@
             <source src="background.mp4" type="video/mp4">
         </video>
     </div>
-    <!-- Background Music -->
-    <audio autoplay loop>
-        <source src="Stranger things audio.mp3" type="audio/mp3">
-    </audio>
 
     <img src="technical font.png" alt="Top Banner" class="top-image" id="topImage">
 
@@ -272,7 +315,16 @@
         </div>
     </div>
 
-    
+    <div id="customMessenger" class="msg-popup">
+    <div class="msg-header">
+        <span class="stranger-font" style="font-size: 14px;">📢 ANNOUNCEMENT</span>
+        <span class="msg-close" onclick="closeMsg()">&times;</span>
+    </div>
+    <div class="msg-body">
+        Do <strong>individual registration</strong>. Max team size <strong>3</strong>.<br>
+        For <strong>TECH FEST</strong>, you can participate in any <strong>3 events</strong> with your pass.
+    </div>
+</div>
 
     <a href="https://www.instagram.com/ieee_comsockec/?igsh=MXVkMmxjaTlxcmp3bw%3D%3D" target="_blank" class="insta-btn">
         <i class="bi bi-instagram"></i>
@@ -290,6 +342,14 @@
                 menuButton.style.display = "block";
             });
         });
+    // Show top message after 2 seconds
+    setTimeout(function() {
+        document.getElementById('customMessenger').style.display = 'block';
+    }, 2000);
+
+    function closeMsg() {
+        document.getElementById('customMessenger').style.display = 'none';
+    }
     </script>
 
     <footer style="
@@ -312,4 +372,3 @@
 
 </body>
 </html>
-
